@@ -10,7 +10,19 @@ in the **runfile**, scroll to near the bottom,
     while True:
         schedule(snapTime=60, push_mqtt=True)
 ```
-- You could change `snapTime` to anyvalue. This is the time the sensor sleeping
+- flag `push_mqtt=True` by defaut. So the line about could be simplify as:
+```
+     while True:
+            schedule(snapTime=60)
+```
+and only necessary when you don't to push data to MQTT server as:
+
+```
+    while True:
+        schedule(snapTime=60, push_mqtt=False)
+```
+
+- You could change `snapTime` to anyvalue. This is the time the sensor sleeping in second.
 - Before measursing, the script turns on the **fan** for **30 seconds** to purge out the old air
 ## here is what looks like in CLI:
 <p align="center">
