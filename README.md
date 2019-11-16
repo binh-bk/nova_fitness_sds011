@@ -37,6 +37,9 @@ and only necessary when you don't to push data to MQTT server as:
   <img src="img/Screenshot-1.png"/>
 </p>
 
+## Credit
+this script was built upon the core module by **ikalchev**. The repo is [linked here](https://github.com/ikalchev/py-sds011)
+
 ##TODO
 - add datasheet
 - some photo about SDS011
