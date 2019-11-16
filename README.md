@@ -4,14 +4,21 @@
 - work with SDS011 and SDS18
 - to run the script, check the USB port. In linux, the port can be found by `ls /dev/ttyUSB*`
 - run `python3.6 runfile.py 0`
-
+# config 
+in the **runfile**, scroll to near the bottom,
+```
+    while True:
+        schedule(snapTime=60, push_mqtt=True)
+```
+- You could change `snapTime` to anyvalue. This is the time the sensor sleeping
+- Before measursing, the script turns on the **fan** for **30 seconds** to purge out the old air
 ## here is what looks like in CLI:
 <p align="center">
   <img src="img/Screenshot-1.png"/>
 </p>
 
 ## The CSV file stored data locally
-[CSV file](http://Nov2019/sds018_test.csv)
+[CSV file](https://github.com/binh-bk/nova_fitness_sds011/blob/master/Nov2019/sds018_test.csv)
 
 ## if the MQTT is enabled through the flag `push_mqtt=True`, here is the data in the server
 <p align="center">
