@@ -24,6 +24,12 @@ and only necessary when you don't to push data to MQTT server as:
 
 - You could change `snapTime` to anyvalue. This is the time the sensor sleeping in second.
 - Before measursing, the script turns on the **fan** for **30 seconds** to purge out the old air
+
+- change run mode (active == fan is always on, and passive == fan is off for certain about of time)
+```
+     run_mode(passive=True)  # continuous (active) running, change to passive=False
+```
+
 ## here is what looks like in CLI:
 <p align="center">
   <img src="img/Screenshot-2.png"/>
