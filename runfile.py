@@ -142,14 +142,20 @@ def add_missing():
     return None
 
 
-def run():
+def run_mode(passive=True):
     '''to setup to working cycle for Nova Fitness SDS011'''
 
     global pm10, pm25
-    sensor.sleep(sleep=False) # wakup
-    time.sleep(30) # stablizing == 30 sec turn on the fan
-    pm25, pm10 = sensor.query()
-    sensor.sleep()
+    if passive:
+        sensor.sleep(sleep=False) # wakup
+    time.sleep(30) # turn on fan for 30s to stablize air
+    try:  
+        pm25, pm10 = sensor.query()
+    except Exception as e:
+        print('Error: {}'.format(e))
+    time.sleep(1)
+    if passive:  
+        sensor.sleep(sleep=True) # turning off fan
     return None
 
 
@@ -164,7 +170,8 @@ def schedule(snapTime=570,push_mqtt=True):
         ts = time.strftime('%x %X', time.localtime())
         print("Run script at: {}, lastRun was {}".format(ts, lastTime))
         
-        run()
+        run_mode(passive=True)  # continuous (active) running, change to passive=False
+        
         aqi_pm25, status_pm25 = calAQI('PM2.5', pm25)
         aqi_pm10, status_pm10 = calAQI('PM10', pm10)
 
