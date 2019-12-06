@@ -168,7 +168,8 @@ def schedule(snapTime=570,push_mqtt=True):
         add_header()
     if time.time()-lastTime >= snapTime:
         ts = time.strftime('%x %X', time.localtime())
-        print("Run script at: {}, lastRun was {}".format(ts, lastTime))
+        print('-'*40)
+        print("Now: {}, lastRun: {}".format(ts, time.ctime(lastTime)))
         
         run_mode(passive=True)  # continuous (active) running, change to passive=False
         
@@ -187,8 +188,8 @@ def schedule(snapTime=570,push_mqtt=True):
         
         '''save data locally with CSV file'''
         with open(logFile, 'a+') as f:
-            f.write(payload)
-            print('Save data: {}'.format(payload))
+            f.write(payload.strip())
+            print('Save data: {}'.format(payload.strip()))
  
         '''optionally push data to MQTT server'''
         global is_tmp_file
