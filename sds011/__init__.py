@@ -77,7 +77,11 @@ class SDS011(object):
                 + b"\x00" * 10)
         cmd = self._finish_cmd(cmd)
         self._execute(cmd)
-        self._get_reply()
+        try:
+            self._get_reply()
+        except Exception as e:
+            print('Error while getting reply: {}'.format(e))
+            pass
 
     def query(self):
         """Query the device and read the data.
